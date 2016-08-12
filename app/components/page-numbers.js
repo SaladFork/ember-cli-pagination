@@ -4,8 +4,8 @@ import PageItems from 'ember-cli-pagination/lib/page-items';
 import Validate from 'ember-cli-pagination/validate';
 
 export default Ember.Component.extend({
-  currentPageBinding: "content.page",
-  totalPagesBinding: "content.totalPages",
+  currentPage: Ember.computed.alias("content.page"),
+  totalPages: Ember.computed.alias("content.totalPages"),
 
   hasPages: Ember.computed.gt('totalPages', 1),
 
@@ -34,15 +34,15 @@ export default Ember.Component.extend({
   pageItemsObj: function() {
     return PageItems.create({
       parent: this,
-      currentPageBinding: "parent.currentPage",
-      totalPagesBinding: "parent.totalPages",
-      truncatePagesBinding: "parent.truncatePages",
-      numPagesToShowBinding: "parent.numPagesToShow",
-      showFLBinding: "parent.showFL"
+      currentPage: Ember.computed.alias("parent.currentPage"),
+      totalPages: Ember.computed.alias("parent.totalPages"),
+      truncatePages: Ember.computed.alias("parent.truncatePages"),
+      numPagesToShow: Ember.computed.alias("parent.numPagesToShow"),
+      showFL: Ember.computed.alias("parent.showFL")
     });
   }.property(),
 
-  //pageItemsBinding: "pageItemsObj.pageItems",
+  //pageItems: Ember.computed.alias("pageItemsObj.pageItems"),
 
   pageItems: function() {
     this.validate();
